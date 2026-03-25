@@ -1,0 +1,6 @@
+{
+    "name": "Alice",
+    "age": 25,
+    "isStudent": false,
+    "note": "you could use a plain text file, it would function the same to code, but using .json gives you the different colored words in your editor, some intellisense action (not the buggy autocomplete kind)"
+}

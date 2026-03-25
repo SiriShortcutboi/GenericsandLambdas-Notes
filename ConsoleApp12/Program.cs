@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
+using System.Text.Json;
 
 public class Program
 { //probably incomplete notes about LINQ 
@@ -9,7 +7,39 @@ public class Program
         
 	static void Main()
     {
+        string path = @"C:\Users\holden.anderson\source\repos\SiriShortcutboi\ConsoleApp12\ConsoleApp12\data.json";
+
+
+
         List<Person> list = BabyMaker();
+        //Person person = new Person("Bob", 4);
+
+
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        //To Convert to JSON we Serilaize
+        string convert = JsonSerializer.Serialize(list, options);
+        Console.WriteLine(convert);
+        //also there are online tools to convert json to be usable in every language, serving up the specific tools you would need. 
+        //also those tools can help you stretch out a json file you got from the internet, because it was probably shrank down to one line to save storage and time, spaces take up storage
+
+
+        //To Convert back from JSON we DeSerialize (and it doesnt keep the parent obejct, you have to specify when you come back) 
+        string text = File.ReadAllText(path);
+        Person imBack = JsonSerializer.Deserialize<Person>(convert); //when you convert back you have to specify the Type like a custom object, 
+        //                and also the variable name: like ^convert in string convert
+
+
+
+        //JSON - under the hood aint special, its a string
+
+
+
+
+
         //p equals the things in our person list
         List<Person> peopleNamedBob = list.Where(p => p.Name == "Bob" && p.Age <10 ).ToList();
 
